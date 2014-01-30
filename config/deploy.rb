@@ -99,10 +99,10 @@ if Rubber::Util.has_asset_pipeline?
   callbacks[:before].delete_if {|c| c.source == "deploy:assets:symlink"}
   before "deploy:assets:precompile", "deploy:assets:symlink"
   before "deploy:assets:precompile" do
-    run ["ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml",
-      "RAILS_ENV=production bundle exec rake db:migrate",
+    run [
+      "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml",
       "ln -nfs #{shared_path}/config/thinking_sphinx.yml #{release_path}/config/thinking_sphinx.yml",
-      "RAILS_ENV=production bundle exec rake ts:rebuild"].join(" && ")
+      ].join(" && ")
   end
   after "rubber:config", "deploy:assets:precompile"
 end
