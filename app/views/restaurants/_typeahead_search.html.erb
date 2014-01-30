@@ -1,0 +1,12 @@
+<div class="restaurant_finder">
+  <input type="text" id='finder' placeholder="Start typing a restaurant name or address"/>
+</div>
+
+<script type="text/javascript">
+  // creating "load_dealership_name_autocomplete" function call into
+  // a custom event, which will be called in "search_filter.js"
+  // hence making it synchronous with the JS load order.
+  $(document).ready(function(){
+    load_restaurant_name_autocomplete('<%= restaurant_suggestions_path %>', 'finder', 'dummy');
+  });
+</script>

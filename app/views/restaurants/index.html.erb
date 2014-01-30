@@ -1,0 +1,45 @@
+<h1>Listing restaurants</h1>
+
+<%= render "typeahead_search" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rating</th>
+    <th>Address</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td><%= restaurant.name %></td>
+      <td>
+        <% rating = restaurant.avg_rating %>
+        <% 5.times do %>
+
+          <span class="star <%= 'marked_star' unless (rating=rating-1) < 0 %>"></span>
+        <% end %>
+      </td>
+      <td><%= restaurant.address %></td>
+      <td><%= link_to 'Show', restaurant %></td>
+      <td>
+        <%= link_to add_edit_review_path(restaurant) do %>
+          <% if current_user.has_reviewed_restaurant? restaurant %>
+            Edit review
+          <% else %>
+            Add a review
+          <% end %>
+        <% end %>
+      </td>
+      <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+      <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @restaurants %>
+
+<br />
+
+<%= link_to 'New Restaurant', new_restaurant_path %>

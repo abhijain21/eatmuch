@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= @restaurant.name %>
+</h1>
+
+<p>
+  <b>Address:</b>
+  <%= @restaurant.address %>
+</p>
+
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>
+
+<% if @restaurant.reviews.present? %>
+  <h2>Reviews</h2>
+  <hr/>
+  <% @restaurant.reviews.each do |review| %>
+    <div class="single_review" id="review_<%= review.id %>">
+      <p>
+        <b>User:</b> <%= review.user.email %>
+        <br/>
+        <% if review.comment.present? %>
+          <b>Comment:</b> <%= review.comment %>
+
+        <% end %>
+        <br/>
+        <b>Rating:</b>
+        <% rating = review.rating %>
+        <% 5.times do %>
+
+          <span class="star <%= 'marked_star' unless (rating=rating-1) < 0 %>"></span>
+        <% end %>
+        <br/>
+        <% if review.user == current_user %>
+          <%= link_to "Edit review", add_edit_review_path(@restaurant.id) %>
+        <% end %>
+      </p>
+
+    </div>
+  <% end %>
+<% else %>
+  <br>
+  <br>
+  Be the first one to review and rate this place!
+  <%= link_to "Add a review", add_edit_review_path(@restaurant.id) %>
+<% end %>

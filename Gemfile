@@ -6,7 +6,12 @@ gem 'rails', '3.2.16'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem 'devise'
+gem 'hirb'
+gem 'thinking-sphinx', '~> 3.1.0'
+gem 'jquery-rails', '3.0.4'
+gem 'jquery-ui-rails', '4.1.0'
+gem 'will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,8 +24,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,3 +39,8 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+gem 'rubber'
+gem 'open4'
+gem 'gelf'
+gem 'graylog2_exceptions', :git => 'git://github.com/wr0ngway/graylog2_exceptions.git'
+gem 'graylog2-resque'
